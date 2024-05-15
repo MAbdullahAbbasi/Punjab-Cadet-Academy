@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <title>Teachers Financials</title>
+</head>
+<body style="background-color: rgb(236, 236, 236);">
+
+  
+    <div class="my-5 mx-3" style="width: 98%; background-color: white; padding: 2%; border-radius: 5px; align-self: center;">
+        <h1 class="my-3" style="text-align: center;">Teachers Financials</h1>
+        <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Serial No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Class</th>
+              <th scope="col">Status</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+
+          <form action="/tea_sal_edit/{{selected_tea.sno}}", method="POST">
+          <tbody>
+              <tr>
+                <th scope="row">{{selected_tea.sno}}</th>
+                <td>{{selected_tea.name}}</td>
+                <td>{{selected_tea.classNo}}th</td>
+                <td>
+                  <div style="display: inline; margin-right: 20%; cursor: pointer;" >
+                    <input class="form-check-input" type="radio" style="cursor: pointer;" name="fee_status{{ selected_tea.sno }}" id="paid{{ selected_tea.sno }}" value="Paid" {% if selected_tea.status == 'Paid' %} checked {% endif %}>
+                    <label class="form-check-label" for="paid{{ selected_tea.sno }}" style="cursor: pointer;">
+                        Paid
+                      </label>
+                    </div>
+                    <div style="display: inline; margin-right: 20%; cursor: pointer;" >
+                      <input class="form-check-input" type="radio" style="cursor: pointer;" name="fee_status{{ selected_tea.sno }}" id="unpaid{{ selected_tea.sno }}" value="Unpaid" {% if selected_tea.status == 'Unpaid' %} checked {% endif %}>
+                      <label class="form-check-label" for="unpaid{{ selected_tea.sno }}" style="cursor: pointer;">
+                        Unpaid
+                      </label>
+                    </div>
+                </td>
+                <td>
+                  <input type="hidden" name="name" id="name" >
+                  <input type="hidden" name="classNo" id="classNo" >
+
+                  <span>Rs.</span>
+                  <input type="text" name="amount" id="amount" value="{{selected_tea.amount}}">
+                </td>
+                <td>
+                  <button type="submit" name="submit" id="submit" class="btn btn-success">Save Changes</button>
+                </td>
+              </tr>
+          </tbody>
+        </form>
+        </table>
+    </div>
+</body>
+</html>
